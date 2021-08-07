@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 
-class Weather:
+class ObHavo:
     def __init__(self,viloyat):
         
         self.viloyat = viloyat
