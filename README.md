@@ -20,7 +20,7 @@ O'zbekistondagi 12ta viloyat bo'ticha ob-havo ma'lumotlari.
 #### Eslatma: agar ingliz tilini bilsangiz inglizcha yozishingiz ham mumkin!
 
 # Ma'lumot
-Hozirda parserimizni ishlatish uchun ma'lum viloyatlar mavjud, hozirgi versiya 0.1-versiya hisoblanadi , bu kodga yangilik qo'shishga harakat qilaman
+Hozirda modulemizni ishlatish uchun ma'lum viloyatlar mavjud, hozirgi versiya 0.1-versiya hisoblanadi , bu modulga yangilik qo'shishga harakat qilaman
 
 # Ishlatish
 
