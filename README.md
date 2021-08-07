@@ -17,6 +17,25 @@ O'zbekistondagi 12ta viloyat bo'ticha ob-havo ma'lumotlari.
 14.Farg'ona
 15.Xiva
 
+# To'g'ri viloyat nomlari:
+```
+tashkent
+jizzakh
+andijan
+namangan 
+ferghana
+gulistan
+bukhara 
+zarafshan
+karshi
+navoi
+nukus
+termez
+urgench
+khiva
+samarkand
+```
+
 #### Eslatma: agar ingliz tilini bilsangiz inglizcha yozishingiz ham mumkin!
 
 # Ma'lumot
