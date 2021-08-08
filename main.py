@@ -1,8 +1,6 @@
 from obhavo import ObHavo
 
-# Author: Akmal Isakulov
-# All rights reserved, yana bilmadim shunaqa bo'lsa kerak
-# Telegram channel: https://t.me/pythusuz
+#Parse from http://obhavo.uz
 
 # Ma'lumotlar
 
