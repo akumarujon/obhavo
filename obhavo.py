@@ -2,18 +2,21 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 
-class ObHavo:
-    def __init__(self,viloyat):
-        
-        self.viloyat = viloyat
-        
-        
-        url = f"http://obhavo.uz/{viloyat}"
-        r =  requests.get(url)
-        soup = BeautifulSoup(r.content,"html.parser")
 
-        print("Viloyat nomi to'g'ri yozilganligiga ishonch hosil qiling, nomlarni ingliz tilida imlo xatolarisiz yozing!")
-        sleep(5)
+class ObHavo:
+    def __init__(self, viloyat):
+
+        self.viloyat = viloyat
+
+        url = f"http://obhavo.uz/{viloyat}"
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
+        # Sana
+        try:
+            sana = soup.find("div", class_='current-day').get_text()
+        except AttributeError:
+            print("Viloyat nomi noto'g'ri kirtildi!")
+            exit()
         print("Kuting...")
         sleep(1)
         print("Tayyor!!!")
@@ -21,199 +24,196 @@ class ObHavo:
         print("Natija:")
 
         print(f"{viloyat.capitalize()}da:")
-        
-        # Sana
-        sana = soup.find("div",class_='current-day').get_text()
+
         sana_split = sana.split(",")
         self.sana = sana_split[1].strip()
-        
-        # Kunduzgi ob-havo
-        kunduz = soup.find("div",class_="current-forecast").get_text()
-        kunduz_split = kunduz.split()
-        self.kunduz = kunduz_split[0].strip()        
 
-        #Kechasi
-        kechasi = soup.find("div",class_="current-forecast").get_text()
+        # Kunduzgi ob-havo
+        kunduz = soup.find("div", class_="current-forecast").get_text()
+        kunduz_split = kunduz.split()
+        self.kunduz = kunduz_split[0].strip()
+
+        # Kechasi
+        kechasi = soup.find("div", class_="current-forecast").get_text()
         kechasi_split = kechasi.split()
         self.kechasi = kechasi_split[1].strip()
 
         # Ayrim Joylarda
-        joylarda = soup.find("div",class_="current-forecast-desc").get_text()
+        joylarda = soup.find("div", class_="current-forecast-desc").get_text()
         joylarda_split = joylarda.split()
         self.joylarda = f"{joylarda_split[0]} {joylarda_split[1]}"
 
-        #Qolgan ma'lumotlar
-        infos = soup.find("div",class_="col-1").get_text()
+        # Qolgan ma'lumotlar
+        infos = soup.find("div", class_="col-1").get_text()
         infos_split = infos.split()
-        
-        #Namlik
+
+        # Namlik
         namlik = infos_split[1].strip()
         self.namlik = namlik
 
-        #Shamol 
+        # Shamol
         shamol = f"{infos_split[3]} {infos_split[4]} {infos_split[5]}"
         self.shamol = shamol.strip()
 
-        #Bosim
+        # Bosim
         bosim = f"{infos_split[7]} {infos_split[8]} {infos_split[9]} {infos_split[10]}"
         self.bosim = bosim
 
-        #Infos
-        infos2 = soup.find("div",class_='col-2').get_text()
+        # Infos
+        infos2 = soup.find("div", class_='col-2').get_text()
         infos2_split = infos2.split()
 
-        #Oy 
+        # Oy
         oy = f"{infos2_split[1]} {infos2_split[2]}"
         self.oy = oy
 
-        #Quyosh chiqishi
+        # Quyosh chiqishi
         chiqish = f"{infos2_split[5]}"
         self.chiqish = chiqish
-        
-        #Quyosh botishi
+
+        # Quyosh botishi
         botish = f"{infos2_split[8]}"
-        self.botish = botish 
+        self.botish = botish
 
         # Infos
-        infos3 = soup.find("div",class_="current-forecast-day").get_text()
+        infos3 = soup.find("div", class_="current-forecast-day").get_text()
         infos3_split = infos3.split()
         self.infos = infos3_split
 
-        #Tong 
+        # Tong
         tong = infos3_split[1]
         self.tong = tong
 
-        #Kun 
+        # Kun
         kun = infos3_split[3]
         self.kun = kun
 
-        #Oqshom 
+        # Oqshom
         oqshom = infos3_split[5]
         self.oqshom = oqshom
 
-        
-
     # Haftalik Ma'lumot
-    def haftalik(self,viloyat):
+
+    def haftalik(self, viloyat):
 
         url = f"http://obhavo.uz/{viloyat}"
-        r =  requests.get(url)
-        soup = BeautifulSoup(r.content,"html.parser")
-        
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
+
         # Haftalik
 
-        all_info_kun = kun1 = soup.find_all("td",class_="weather-row-day")
+        all_info_kun = kun1 = soup.find_all("td", class_="weather-row-day")
 
         # Kun 1
         kun1 = all_info_kun[0].get_text()
         kun1_split = kun1.split()
         kun1_result = f"{kun1_split[1]} {kun1_split[2]}".strip()
-        
-        #Kun 2 
+
+        # Kun 2
         kun2 = all_info_kun[1].get_text()
         kun2_split = kun2.split()
         kun2_result = f"{kun2_split[1]} {kun2_split[2]}"
 
-        #Kun 3
+        # Kun 3
         kun3 = all_info_kun[2].get_text()
         kun3_split = kun3.split()
         kun3_result = f"{kun3_split[1]} {kun3_split[2]}"
 
-        #Kun 4
+        # Kun 4
         kun4 = all_info_kun[3].get_text()
         kun4_split = kun4.split()
         kun4_result = f"{kun4_split[1]} {kun4_split[2]}"
 
-        #Kun 5
+        # Kun 5
         kun5 = all_info_kun[4].get_text()
         kun5_split = kun5.split()
         kun5_result = f"{kun5_split[1]} {kun5_split[2]}"
 
-        #Kun 6
+        # Kun 6
         kun6 = all_info_kun[5].get_text()
         kun6_split = kun6.split()
         kun6_result = f"{kun6_split[1]} {kun6_split[2]}"
 
-        #Kun 7
+        # Kun 7
         kun7 = all_info_kun[6].get_text()
         kun7_split = kun7.split()
         kun7_result = f"{kun7_split[1]} {kun7_split[2]}"
 
-        all_info_harorat = soup.find_all("td",class_="weather-row-forecast")
+        all_info_harorat = soup.find_all("td", class_="weather-row-forecast")
 
-        #Harorat 1
+        # Harorat 1
         harorat1 = all_info_harorat[0].get_text()
         harorat1_split = harorat1.split()
         harorat1_result = f"\nKunduzi: {harorat1_split[0]}\nKechasi: {harorat1_split[1]}"
 
-        #Harorat 2
+        # Harorat 2
         harorat2 = all_info_harorat[1].get_text()
         harorat2_split = harorat1.split()
         harorat2_result = f"\nKunduzi: {harorat2_split[0]}\nKechasi: {harorat2_split[1]}"
 
-        #Harorat 3
+        # Harorat 3
         harorat3 = all_info_harorat[2].get_text()
         harorat3_split = harorat3.split()
         harorat3_result = f"\nKunduzi: {harorat3_split[0]}\nKechasi: {harorat3_split[1]}"
 
-        #Harorat 4
+        # Harorat 4
         harorat4 = all_info_harorat[3].get_text()
         harorat4_split = harorat4.split()
         harorat4_result = f"\nKunduzi: {harorat4_split[0]}\nKechasi: {harorat4_split[1]}"
 
-        #Harorat 5
+        # Harorat 5
         harorat5 = all_info_harorat[4].get_text()
         harorat5_split = harorat5.split()
         harorat5_result = f"\nKunduzi: {harorat5_split[0]}\nKechasi: {harorat5_split[1]}"
         self.har = harorat5_split
-        #Harorat 6
+        # Harorat 6
         harorat6 = all_info_harorat[5].get_text()
         harorat6_split = harorat6.split()
         harorat6_result = f"\nKunduzi: {harorat6_split[0]}\nKechasi: {harorat6_split[1]}"
 
-        #Harorat 7
+        # Harorat 7
         harorat7 = all_info_harorat[6].get_text()
         harorat7_split = harorat7.split()
         harorat7_result = f"\nKunduzi: {harorat7_split[0]}\nKechasi: {harorat7_split[1]}"
 
-        all_info_tavsif = soup.find_all("td",class_="weather-row-desc")
+        all_info_tavsif = soup.find_all("td", class_="weather-row-desc")
 
-        #Tavsif 1
-        tavsif1  = all_info_tavsif[0].get_text()
+        # Tavsif 1
+        tavsif1 = all_info_tavsif[0].get_text()
         tavsif1_split = tavsif1.strip()
         tavsif1_result = tavsif1_split
 
-        #Tavsif 2
-        tavsif2  = all_info_tavsif[1].get_text()
+        # Tavsif 2
+        tavsif2 = all_info_tavsif[1].get_text()
         tavsif2_split = tavsif2.strip()
         tavsif2_result = tavsif2_split
 
-        #Tavsif 3
-        tavsif3  = all_info_tavsif[2].get_text()
+        # Tavsif 3
+        tavsif3 = all_info_tavsif[2].get_text()
         tavsif3_split = tavsif3.strip()
         tavsif3_result = tavsif3_split
 
-        #Tavsif 4
-        tavsif4  = all_info_tavsif[3].get_text()
+        # Tavsif 4
+        tavsif4 = all_info_tavsif[3].get_text()
         tavsif4_split = tavsif4.strip()
         tavsif4_result = tavsif4_split
 
-        #Tavsif 5
-        tavsif5  = all_info_tavsif[4].get_text()
+        # Tavsif 5
+        tavsif5 = all_info_tavsif[4].get_text()
         tavsif5_split = tavsif5.strip()
         tavsif5_result = tavsif5_split
 
-        #Tavsif 6
-        tavsif6  = all_info_tavsif[5].get_text()
+        # Tavsif 6
+        tavsif6 = all_info_tavsif[5].get_text()
         tavsif6_split = tavsif6.strip()
         tavsif6_result = tavsif6_split
 
-        #Tavsif 7
-        tavsif7  = all_info_tavsif[6].get_text()
+        # Tavsif 7
+        tavsif7 = all_info_tavsif[6].get_text()
         tavsif7_split = tavsif7.strip()
         tavsif7_result = tavsif7_split
 
-        all_info_yogin = soup.find_all("td",class_="weather-row-pop")
+        all_info_yogin = soup.find_all("td", class_="weather-row-pop")
 
         # Yog'ingarchilik 1
         yogin1 = all_info_yogin[0].get_text()
@@ -281,16 +281,4 @@ Harorat: {harorat7_result}
 Tavsif: {tavsif7_result}
 Yog'ingarchilik: {yogin7_result}
 """
-        return  hafta
-
-
-
-
-
-
-
-
-
-
-
-
+        return hafta
