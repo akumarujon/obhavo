@@ -113,7 +113,7 @@ print(info.oqshom)
 
 #Haftalik ma'lumot olish uchun
 
-print(info.hafatlik("viloyat nomi"))
+print(info.haftalik("viloyat nomi"))
 ```
 # Qo'shimcha
 Bu moduleda hali xatoliklar ancha ko'p agar ishlata olmasangiz https://t.me/pythusuz kanali izohlarida qoldiring albatta javob beramiz!
