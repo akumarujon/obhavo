@@ -103,9 +103,9 @@ print(info.botish)
 
 print(info.tong)
 
-#Tungi harorat
+#Kunduzgi harorat
 
-print(info.tun)
+print(info.kun)
 
 #Oqshom harorati
 
