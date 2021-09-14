@@ -94,8 +94,11 @@ class ObHavo:
 
     # Haftalik Ma'lumot
 
-    def haftalik(self, viloyat):
-
+    def haftalik(self):
+        
+        viloyat = self.viloyat
+        
+        
         url = f"http://obhavo.uz/{viloyat}"
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html.parser")
