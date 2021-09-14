@@ -41,4 +41,4 @@ print("Oqshom:", t.oqshom)
 
 # Haftalik ma'lumot
 
-print(t.haftalik("tashkent"))
+print(t.haftalik())
