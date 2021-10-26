@@ -117,4 +117,3 @@ print(info.haftalik())
 ```
 # Qo'shimcha
 Bu moduleda hali xatoliklar ancha ko'p agar ishlata olmasangiz https://t.me/pythusuz kanali izohlarida qoldiring albatta javob beramiz!
-### Hurmat bilan pythonchi
