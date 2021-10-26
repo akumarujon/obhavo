@@ -39,7 +39,7 @@ samarkand
 #### Eslatma: agar ingliz tilini bilsangiz inglizcha yozishingiz ham mumkin!
 
 # Ma'lumot
-Hozirda modulemizni ishlatish uchun ma'lum viloyatlar mavjud, hozirgi versiya 0.1-versiya hisoblanadi , bu modulga yangilik qo'shishga harakat qilaman
+Hozirda modulemizni ishlatish uchun ma'lum viloyatlar mavjud, hozirgi versiya 0.2-versiya hisoblanadi , bu modulga yangilik qo'shishga harakat qilaman
 # O'rnatish
 Ushbu modulni ishlatish uchun bizga BeautifulSoap4 paketi kerak bo'ladi, uni
 `pip3 install bs4`
