@@ -23,12 +23,11 @@ khiva
 samarkand
 '''
 
-t = ObHavo("tashkent")
+t = ObHavo("toshkent")
 
 print("Sana:", t.sana)
 print("Kunduzi", t.kunduz)
 print("Kechasi:", t.kechasi)
-print("Ayrim joylarda:", t.joylarda)
 print("Namlik:", t.namlik)
 print("Shamol:", t.shamol)
 print("Bosim:", t.bosim)

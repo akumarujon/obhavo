@@ -1,16 +1,21 @@
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
+from viloyatlar import set_viloyat
 
 
 class ObHavo:
     def __init__(self, viloyat):
 
         self.viloyat = viloyat
+        
+        url = f"http://obhavo.uz/{set_viloyat(viloyat)}"
 
-        url = f"http://obhavo.uz/{viloyat}"
         r = requests.get(url)
+        
         soup = BeautifulSoup(r.content, "html.parser")
+        
+        
         # Sana
         try:
             sana = soup.find("div", class_='current-day').get_text()
@@ -38,10 +43,6 @@ class ObHavo:
         kechasi_split = kechasi.split()
         self.kechasi = kechasi_split[1].strip()
 
-        # Ayrim Joylarda
-        joylarda = soup.find("div", class_="current-forecast-desc").get_text()
-        joylarda_split = joylarda.split()
-        self.joylarda = f"{joylarda_split[0]} {joylarda_split[1]}"
 
         # Qolgan ma'lumotlar
         infos = soup.find("div", class_="col-1").get_text()
@@ -99,7 +100,7 @@ class ObHavo:
         viloyat = self.viloyat
         
         
-        url = f"http://obhavo.uz/{viloyat}"
+        url = f"http://obhavo.uz/{set_viloyat(viloyat)}"
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html.parser")
 
