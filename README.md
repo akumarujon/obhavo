@@ -1,5 +1,5 @@
 # obhavo
-O'zbekistondagi 12ta viloyat bo'ticha ob-havo ma'lumotlari.
+O'zbekistondagi 12ta viloyat bo'yicha ob-havo ma'lumotlari.
 ### Hozirda mavjud joylashuvlar:
 1.Toshkent
 2.Andijon
