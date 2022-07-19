@@ -115,5 +115,3 @@ print(info.oqshom)
 
 print(info.haftalik())
 ```
-# Qo'shimcha
-Bu moduleda hali xatoliklar ancha ko'p agar ishlata olmasangiz https://t.me/coder_talks kanali izohlarida qoldiring albatta javob beramiz!
